@@ -2553,23 +2553,39 @@ void lcd_update() {
     bool sd_status = IS_SD_INSERTED;
     if (sd_status != lcd_sd_status && lcd_detected()) {
 
-      if (sd_status) {
-        card.initsd();
-        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_SD_INSERTED);
-      }
-      else {
-        card.release();
-        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_SD_REMOVED);
-      }
+     #if ENABLED(RIGIDBOT_PANEL)
 
-      lcd_sd_status = sd_status;
-      lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW;
-      lcd_implementation_init( // to maybe revive the LCD if static electricity killed it.
-        #if ENABLED(LCD_PROGRESS_BAR)
-          currentScreen == lcd_status_screen
-        #endif
-      );
-    }
+	    	if (sd_status) {
+	        card.initsd();
+	        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_USB_INSERTED);
+	      }
+	      else {
+	        card.release();
+	        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_USB_REMOVED);
+	      }
+
+	   #else
+
+	      if (sd_status) {
+	        card.initsd();
+	        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_SD_INSERTED);
+	      }
+	      else {
+	        card.release();
+	        if (lcd_sd_status != 2) LCD_MESSAGEPGM(MSG_SD_REMOVED);
+	      }
+	      
+		 #endif //RIGIDBOT_PANEL
+
+	      lcd_sd_status = sd_status;
+	      lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW;
+	      lcd_implementation_init( // to maybe revive the LCD if static electricity killed it.
+	        #if ENABLED(LCD_PROGRESS_BAR)
+	          currentScreen == lcd_status_screen
+	        #endif
+	      );
+	    }
+
 
   #endif //SDSUPPORT && SD_DETECT_PIN
 

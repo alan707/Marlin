@@ -42,7 +42,13 @@
   #define MSG_SD_INSERTED                     "Card inserted"
 #endif
 #ifndef MSG_SD_REMOVED
-  #define MSG_SD_REMOVED                      "Card removed"
+  #define MSG_SD_REMOVED                     "Card removed"
+#endif
+#ifndef MSG_USB_INSERTED
+  #define MSG_USB_INSERTED                     "USB inserted"
+#endif
+#ifndef MSG_USB_REMOVED
+  #define MSG_USB_REMOVED                     "USB removed"
 #endif
 #ifndef MSG_LCD_ENDSTOPS
   #define MSG_LCD_ENDSTOPS                    "Endstops" // Max length 8 characters
