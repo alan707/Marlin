@@ -437,8 +437,8 @@
 // @section motion
 
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,400,500}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {250, 250, 2, 22}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {1000,1000,5,1000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_MAX_FEEDRATE          {300, 300, 20, 25}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {3000,3000,200,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          500   // X, Y, Z and E acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  500    // E acceleration in mm/s^2 for retracts
@@ -782,7 +782,7 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 
 #if ENABLED(EEPROM_SETTINGS)
   // To disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
@@ -965,7 +965,7 @@
 //
 // :['JAPANESE','WESTERN','CYRILLIC']
 //
-#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 WESTERN
 
 //
 // LCD TYPE
@@ -977,7 +977,7 @@
 // IMPORTANT NOTE: The U8glib library is required for Full Graphic Display!
 //                 https://github.com/olikraus/U8glib_Arduino
 //
-//#define ULTRA_LCD   // Character based
+#define ULTRA_LCD   // Character based
 //#define DOGLCD      // Full graphics display
 
 //
@@ -986,7 +986,7 @@
 // SD Card support is disabled by default. If your controller has an SD slot,
 // you must uncomment the following option or it won't work.
 //
-//#define SDSUPPORT
+#define SDSUPPORT
 
 //
 // SD CARD: SPI SPEED
