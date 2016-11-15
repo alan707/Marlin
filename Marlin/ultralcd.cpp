@@ -397,7 +397,6 @@ uint8_t lcdDrawUpdate = LCDVIEW_CLEAR_CALL_REDRAW; // Set when the LCD needs to 
         defer_return_to_status = false;
         screen_history_depth = 0;
       }
-      if (feedback) lcd_quick_feedback();
       lcd_implementation_clear();
       #if ENABLED(LCD_PROGRESS_BAR)
         // For LCD_PROGRESS_BAR re-initialize custom characters
@@ -2391,9 +2390,7 @@ void kill_screen(const char* lcd_msg) {
     next_button_update_ms = millis() + 500;
 
     // Buzz and wait. The delay is needed for buttons to settle!
-    #if ENABLED(SPEAKER)
-      lcd_buzz(LCD_FEEDBACK_FREQUENCY_DURATION_MS, LCD_FEEDBACK_FREQUENCY_HZ);
-    #endif
+    lcd_buzz(LCD_FEEDBACK_FREQUENCY_DURATION_MS, LCD_FEEDBACK_FREQUENCY_HZ);
     #if ENABLED(LCD_USE_I2C_BUZZER)
       delay(10);
     #elif PIN_EXISTS(BEEPER)
